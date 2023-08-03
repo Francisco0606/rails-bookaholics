@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "All Books", books_path %> -
+<%= link_to "Read Books", books_path(:read=>true) %> -
+<%= link_to "Unread Books", books_path(:read=>false) %>
+
+<% if @filter == "read" %>
+    <h1>Read Books</h1>
+<% elsif @filter == "not read" %>
+    <h1>Unread Books</h1>
+<% else %>
+    <h1>All Books</h1>
+<% end %>
+
+<div id="books">
+  <% @books.each do |book| %>
+    <%= render book %>
+    <p>
+      <%= link_to "Show this book", book %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New book", new_book_path %>
